@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClickHouse.Core", "ClickHouse.Core\ClickHouse.Core.csproj", "{D07051B0-F925-4E29-9861-FA8BF533AB88}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClickHouse.Data", "ClickHouse.Data\ClickHouse.Data.csproj", "{7F98FEAF-71C0-41FE-AAB7-CD2EDBCAFDE9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClickHouseDemo.API", "ClickHouseDemo.API\ClickHouseDemo.API.csproj", "{5386B8CE-D09D-4CC5-8AD1-4A07A75F956E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D07051B0-F925-4E29-9861-FA8BF533AB88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D07051B0-F925-4E29-9861-FA8BF533AB88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D07051B0-F925-4E29-9861-FA8BF533AB88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D07051B0-F925-4E29-9861-FA8BF533AB88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F98FEAF-71C0-41FE-AAB7-CD2EDBCAFDE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F98FEAF-71C0-41FE-AAB7-CD2EDBCAFDE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F98FEAF-71C0-41FE-AAB7-CD2EDBCAFDE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F98FEAF-71C0-41FE-AAB7-CD2EDBCAFDE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5386B8CE-D09D-4CC5-8AD1-4A07A75F956E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5386B8CE-D09D-4CC5-8AD1-4A07A75F956E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5386B8CE-D09D-4CC5-8AD1-4A07A75F956E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5386B8CE-D09D-4CC5-8AD1-4A07A75F956E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

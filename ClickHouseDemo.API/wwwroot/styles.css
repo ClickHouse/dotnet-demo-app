@@ -1,0 +1,62 @@
+:root {
+    --theme-bg: #1f1f1c;
+    --theme-surface: #323232;
+    --theme-border: #414141;
+    --theme-text: #fff;
+    --theme-accent: #fcff74;
+}
+
+.bg-theme-bg {
+    background-color: var(--theme-bg);
+}
+
+.text-theme-text {
+    color: var(--theme-text);
+}
+
+.text-theme-accent {
+    color: var(--theme-accent);
+}
+
+.stat-box {
+    background-color: var(--theme-surface);
+    border: 1px solid var(--theme-border);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.list-container {
+    background-color: var(--theme-surface);
+    border: 1px solid var(--theme-border);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    border-collapse: collapse;
+}
+
+th {
+    font-weight: 600;
+    color: var(--theme-text);
+    border-bottom: 1px solid var(--theme-border);
+}
+
+td, th {
+    padding: 0.75rem 0;
+}
+
+tbody tr {
+    border-bottom: 1px solid var(--theme-border);
+}
+
+tbody tr:last-child {
+    border-bottom: none;
+}
+
+.count-value {
+    color: var(--theme-accent);
+    font-weight: 600;
+}

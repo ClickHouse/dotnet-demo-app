@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClickHouse | Sensor Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-theme-bg text-theme-text min-h-screen p-6">
+<div class="container mx-auto">
+    <div class="flex items-center mb-6">
+        <img src="clickhouse.svg" alt="ClickHouse" class="h-16 w-auto my-auto">
+        <div class="h-10 w-px opacity-10 bg-gray-400 mx-3"></div>
+        <h1 class="text-2xl ml-4 font-bold">Sensor Dashboard</h1>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+        <div class="stat-box">
+            <h2 class="text-lg font-semibold mb-2">Total Sensors</h2>
+            <p id="totalSensors" class="text-theme-accent text-xl font-bold">Loading...</p>
+        </div>
+        <div class="stat-box">
+            <h2 class="text-lg font-semibold mb-2">Total Samples</h2>
+            <p id="totalSamples" class="text-theme-accent text-xl font-bold">Loading...</p>
+        </div>
+        <div class="stat-box">
+            <h2 class="text-lg font-semibold mb-2">Latest Sensor Time</h2>
+            <p id="latestSensorTime" class="text-theme-accent text-xl font-bold">Loading...</p>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="list-container">
+            <h2 class="text-lg font-semibold mb-4">Top Sensors</h2>
+            <table class="w-full">
+                <thead>
+                <tr>
+                    <th class="text-left pb-2">Sensor Type</th>
+                    <th class="text-right pb-2">Sample Count</th>
+                </tr>
+                </thead>
+                <tbody id="samplesPerSensorTable">
+                <tr>
+                    <td colspan="2" class="text-center py-4">Loading...</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="list-container">
+            <h2 class="text-lg font-semibold mb-4">Top Days</h2>
+            <table class="w-full">
+                <thead>
+                <tr>
+                    <th class="text-left pb-2">Date</th>
+                    <th class="text-right pb-2">Sample Count</th>
+                </tr>
+                </thead>
+                <tbody id="samplesPerDateTable">
+                <tr>
+                    <td colspan="2" class="text-center py-4">Loading...</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
