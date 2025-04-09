@@ -4,7 +4,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClickHouse.Core", "ClickHou
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClickHouse.Data", "ClickHouse.Data\ClickHouse.Data.csproj", "{7F98FEAF-71C0-41FE-AAB7-CD2EDBCAFDE9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClickHouseDemo.API", "ClickHouseDemo.API\ClickHouseDemo.API.csproj", "{5386B8CE-D09D-4CC5-8AD1-4A07A75F956E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClickHouse.API", "ClickHouse.API\ClickHouse.API.csproj", "{5386B8CE-D09D-4CC5-8AD1-4A07A75F956E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
