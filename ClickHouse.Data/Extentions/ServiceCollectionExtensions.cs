@@ -19,7 +19,7 @@ public static class ServiceCollectionExtensions
             return settings;
         });
 
-        services.AddSingleton<ClickHouseMigration>();
+        // services.AddSingleton<ClickHouseMigration>();
 
         services.AddSingleton<ISensorRepository, SensorRepository>();
 

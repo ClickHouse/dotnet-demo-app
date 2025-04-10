@@ -8,5 +8,9 @@ public class ClickHouseSettings
     public string Username { get; set; } = "default";
     public string Password { get; set; } = "";
 
-    public string ConnectionString => $"Host={Host};Port={Port};Database={Database};Username={Username};Password={Password}";
+    public string SensorsTable { get; set; } = Environment.GetEnvironmentVariable("CLICKHOUSE_SENSORS_TABLE") ?? "sensors";
+
+    public string ConnectionString =>
+        Environment.GetEnvironmentVariable("CLICKHOUSE_CONNECTION_STRING")
+        ?? $"Host={Host};Port={Port};Database={Database};Username={Username};Password={Password}";
 }

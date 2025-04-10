@@ -7,8 +7,11 @@ namespace ClickHouse.Data.Repositories;
 
 public class SensorRepository : ClickHouseBaseRepository, ISensorRepository
 {
+    private readonly string _sensorsTable;
+
     public SensorRepository(ClickHouseSettings settings) : base(settings)
     {
+        _sensorsTable = settings.SensorsTable;
     }
 
     public async Task<IEnumerable<int>> GetLocationsAsync()
@@ -16,7 +19,7 @@ public class SensorRepository : ClickHouseBaseRepository, ISensorRepository
         var sql = @" 
             SELECT location FROM (
                 SELECT location, COUNT(*) c
-                FROM sensors
+                FROM @SensorsTable
                 WHERE
                     pressure > 0
                     AND temperature > 0
@@ -26,7 +29,7 @@ public class SensorRepository : ClickHouseBaseRepository, ISensorRepository
                 LIMIT 100
             )
         ";
-        return await _connection.QueryAsync<int>(sql);
+        return await _connection.QueryAsync<int>(sql, new { SensorsTable = _sensorsTable });
     }
 
     public async Task<LocationSample> GetMedianForLocationAndTimeRangeAsync(int locationId)
@@ -41,40 +44,40 @@ public class SensorRepository : ClickHouseBaseRepository, ISensorRepository
                 quantile(0.5)(pressure_sealevel) AS PressureSeaLevel,
                 quantile(0.5)(temperature) AS Temperature,
                 quantile(0.5)(humidity) AS Humidity
-            FROM sensors
+            FROM @SensorsTable
             WHERE location = @LocationId
             LIMIT 1
         ";
-        return await _connection.QueryFirstAsync<LocationSample>(sql, new { LocationId = locationId });
+        return await _connection.QueryFirstAsync<LocationSample>(sql, new { SensorsTable = _sensorsTable, LocationId = locationId });
     }
 
     public async Task<DateTime> GetLatestSensorTimeAsync()
     {
-        var sql = "SELECT max(timestamp) FROM sensors";
+        var sql = $"SELECT max(timestamp) FROM {_sensorsTable}";
         return await _connection.QueryFirstOrDefaultAsync<DateTime>(sql);
     }
 
     public async Task<int> GetTotalSensorsCountAsync()
     {
-        var sql = "SELECT COUNT(DISTINCT sensor_id) FROM sensors";
+        var sql = $"SELECT COUNT(DISTINCT sensor_id) FROM {_sensorsTable}";
         return await _connection.QueryFirstOrDefaultAsync<int>(sql);
     }
 
     public async Task<int> GetTotalSamplesCountAsync()
     {
-        var sql = "SELECT COUNT(*) FROM sensors";
+        var sql = $"SELECT COUNT(*) FROM {_sensorsTable}";
         return await _connection.QueryFirstOrDefaultAsync<int>(sql);
     }
 
     public async Task<IEnumerable<DateCount>> GetSampleCountsPerDateAsync()
     {
-        var sql = "SELECT date Date, COUNT(*) Count FROM sensors GROUP BY date ORDER BY Count DESC LIMIT 12";
+        var sql = $"SELECT date Date, COUNT(*) Count FROM {_sensorsTable} GROUP BY date ORDER BY Count DESC LIMIT 12";
         return await _connection.QueryAsync<DateCount>(sql);
     }
 
     public async Task<IEnumerable<SensorCount>> GetSampleCountsPerSensorAsync()
     {
-        var sql = "SELECT sensor_type::String SensorType, COUNT(*) count FROM sensors GROUP BY sensor_type ORDER BY count DESC LIMIT 12";
+        var sql = $"SELECT sensor_type::String SensorType, COUNT(*) count FROM {_sensorsTable} GROUP BY sensor_type ORDER BY count DESC LIMIT 12";
         return await _connection.QueryAsync<SensorCount>(sql);
     }
 }

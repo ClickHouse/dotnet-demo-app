@@ -4,7 +4,7 @@ using ClickHouse.Data.Extentions;
 using ClickHouse.Data.Migrations;
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Configuration.AddEnvironmentVariables();
 builder.Services
     .AddDemoServices(builder.Configuration)
     .AddOpenApi();
