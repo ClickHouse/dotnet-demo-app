@@ -57,21 +57,21 @@ public class SensorRepository : ClickHouseBaseRepository, ISensorRepository
         return await _connection.QueryFirstOrDefaultAsync<DateTime>(sql);
     }
 
-    public async Task<int> GetTotalSensorsCountAsync()
+    public async Task<ulong> GetTotalSensorsCountAsync()
     {
         var sql = $"SELECT COUNT(DISTINCT sensor_id) FROM {_sensorsTable}";
-        return await _connection.QueryFirstOrDefaultAsync<int>(sql);
+        return await _connection.QueryFirstOrDefaultAsync<ulong>(sql);
     }
 
-    public async Task<int> GetTotalSamplesCountAsync()
+    public async Task<ulong> GetTotalSamplesCountAsync()
     {
         var sql = $"SELECT COUNT(*) FROM {_sensorsTable}";
-        return await _connection.QueryFirstOrDefaultAsync<int>(sql);
+        return await _connection.QueryFirstOrDefaultAsync<ulong>(sql);
     }
 
     public async Task<IEnumerable<DateCount>> GetSampleCountsPerDateAsync()
     {
-        var sql = $"SELECT date Date, COUNT(*) Count FROM {_sensorsTable} GROUP BY date ORDER BY Count DESC LIMIT 12";
+        var sql = $"SELECT toStartOfMonth(timestamp) Date, COUNT(*) Count FROM {_sensorsTable} GROUP BY Date ORDER BY Date DESC LIMIT 12";
         return await _connection.QueryAsync<DateCount>(sql);
     }
 

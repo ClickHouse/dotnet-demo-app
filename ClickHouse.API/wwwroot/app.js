@@ -53,12 +53,14 @@ async function fetchAndUpdateListStats() {
     }
 }
 
+const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 function updateSamplesPerDateTable(data) {
     let html = '';
     data.forEach(item => {
+        const itemDate = new Date(item.date);
         html += `
             <tr>
-                <td>${formatDate(item.date)}</td>
+                <td>${monthNames[itemDate.getUTCMonth()]} ${itemDate.getUTCFullYear()}</td>
                 <td class="text-right count-value">${formatNumber(item.count)}</td>
             </tr>
         `;
