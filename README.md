@@ -1,6 +1,6 @@
 # ClickHouse.Driver .NET Example App
 
-A C# demo app for using [ClickHouse.Driver](https://github.com/DarkWanderer/ClickHouse.Driver) in .NET
+A C# demo app for using [ClickHouse.Driver](https://github.com/ClickHouse/clickhouse-cs) in .NET
 
 This app is not a production-ready example, just some sample code to show how to run some queries using the Dapper ORM.
 
