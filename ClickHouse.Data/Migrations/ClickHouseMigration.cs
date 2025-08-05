@@ -1,4 +1,4 @@
-using ClickHouse.Client.ADO;
+using ClickHouse.Driver.ADO;
 using ClickHouse.Data.Configuration;
 using Dapper;
 using Microsoft.Extensions.Logging;
