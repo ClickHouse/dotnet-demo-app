@@ -1,3 +1,6 @@
+using System.Net;
+using ClickHouse.Driver;
+using ClickHouse.Driver.ADO;
 using ClickHouse.Core.Interfaces.Repositories;
 using ClickHouse.Data.Configuration;
 using ClickHouse.Data.Migrations;
@@ -19,7 +22,26 @@ public static class ServiceCollectionExtensions
             return settings;
         });
 
-        // services.AddSingleton<ClickHouseMigration>();
+        services.AddSingleton(provider =>
+        {
+            var settings = provider.GetRequiredService<ClickHouseSettings>();
+
+            var httpHandler = new HttpClientHandler
+            {
+                AutomaticDecompression = DecompressionMethods.All,
+                MaxConnectionsPerServer = 16
+            };
+            var httpClient = new HttpClient(httpHandler);
+
+            var clientSettings = new ClickHouseClientSettings(settings.ConnectionString)
+            {
+                HttpClient = httpClient
+            };
+
+            return new ClickHouseClient(clientSettings);
+        });
+
+        services.AddSingleton<ClickHouseMigration>();
 
         services.AddSingleton<ISensorRepository, SensorRepository>();
 

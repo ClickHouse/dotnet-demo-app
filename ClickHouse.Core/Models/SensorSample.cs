@@ -3,7 +3,7 @@ namespace ClickHouse.Core.Models;
 public record SensorSample
 {
     public ushort sensor_id { get; set; }
-    public string sensor_type { get; set; }
+    public string sensor_type { get; set; } = "";
     public uint location { get; set; }
     public float lat { get; set; }
     public float lon { get; set; }

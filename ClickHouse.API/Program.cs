@@ -11,8 +11,8 @@ builder.Services
 
 var app = builder.Build();
 
-// var migration = app.Services.GetRequiredService<ClickHouseMigration>();
-// await migration.MigrateAsync();
+var migration = app.Services.GetRequiredService<ClickHouseMigration>();
+await migration.MigrateAsync();
 
 if (app.Environment.IsDevelopment())
 {

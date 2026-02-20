@@ -7,7 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="ClickHouse.Driver" Version="0.7.18" />
+        <PackageReference Include="ClickHouse.Driver" Version="1.0.0" />
         <PackageReference Include="Dapper" Version="2.1.66" />
     </ItemGroup>
 

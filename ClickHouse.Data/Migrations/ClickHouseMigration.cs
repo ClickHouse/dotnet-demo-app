@@ -1,18 +1,16 @@
-using ClickHouse.Driver.ADO;
-using ClickHouse.Data.Configuration;
-using Dapper;
+using ClickHouse.Driver;
 using Microsoft.Extensions.Logging;
 
 namespace ClickHouse.Data.Migrations;
 
 public class ClickHouseMigration
 {
-    private readonly ClickHouseConnection _connection;
+    private readonly ClickHouseClient _client;
     private readonly ILogger _logger;
 
-    public ClickHouseMigration(ClickHouseSettings settings, ILogger<ClickHouseMigration> logger)
+    public ClickHouseMigration(ClickHouseClient client, ILogger<ClickHouseMigration> logger)
     {
-        _connection = new ClickHouseConnection(settings.ConnectionString);
+        _client = client;
         _logger = logger;
     }
 
@@ -54,7 +52,7 @@ public class ClickHouseMigration
             ORDER BY (timestamp, sensor_id);
         ";
 
-        await _connection.ExecuteAsync(sql);
+        await _client.ExecuteNonQueryAsync(sql);
         _logger.LogInformation("sensors table created or already exists");
     }
 }
