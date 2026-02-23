@@ -1,22 +1,13 @@
-using System.Net;
-using ClickHouse.Driver.ADO;
-using ClickHouse.Data.Configuration;
+using ClickHouse.Driver;
 
 namespace ClickHouse.Data.Repositories;
 
 public abstract class ClickHouseBaseRepository
 {
-    protected readonly ClickHouseConnection _connection;
+    protected readonly ClickHouseClient _client;
 
-    protected ClickHouseBaseRepository(ClickHouseSettings settings)
+    protected ClickHouseBaseRepository(ClickHouseClient client)
     {
-        var httpHandler = new HttpClientHandler
-        {
-            AutomaticDecompression = DecompressionMethods.All,
-            MaxConnectionsPerServer = 16
-        };
-        var httpClient = new HttpClient(httpHandler);
-
-        _connection = new ClickHouseConnection(settings.ConnectionString, httpClient);
+        _client = client;
     }
 }

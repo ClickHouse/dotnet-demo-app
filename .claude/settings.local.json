@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:clickhouse.com)",
+      "WebFetch(domain:github.com)",
+      "Bash(python3 -c \"\nimport sys, json\nraw = sys.stdin.read\\(\\).strip\\(\\)\n# The content starts after the first quote\nif raw.startswith\\(''''''''\\):\n    raw = raw[1:]\n# Find end of content field\n# Just decode unicode escapes\ntext = raw.encode\\(\\).decode\\(''''unicode_escape''''\\)\n# Print first 8000 chars of the release notes\nprint\\(text[:8000]\\)\n\")",
+      "Bash(python3:*)",
+      "Bash(dotnet restore:*)",
+      "Bash(docker compose down:*)",
+      "Bash(docker compose:*)",
+      "Bash(curl:*)"
+    ]
+  }
+}
